@@ -2,11 +2,15 @@ name: Test Action
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '*/10 * * * *'
   
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Say hello
-        run: echo "Hello GitHub Actions!"
+        run: 
+          date
+          echo "Hello GitHub Actions!"
        
