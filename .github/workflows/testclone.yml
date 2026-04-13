@@ -1,0 +1,28 @@
+# Action name
+name: Test Action - git clone
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  clone-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show working directory
+        run: |
+          pwd
+          ls -la
+
+      - name: Clone this repository
+        run: |
+          git clone https://github.com/${{ github.repository }}.git cloned-repo
+
+      - name: Check clone result
+        run: |
+          ls -la
+          ls -la cloned-repo
+          
+           
