@@ -1,0 +1,32 @@
+# Action name
+name: Test Action - git mirror clone and upload
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  mirror-clone-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show workspace
+        run: |
+          pwd
+          ls -la
+
+      - name: Mirror clone this repository
+        run: |
+          git clone --mirror https://github.com/${{ github.repository }}.git mirror-repo.git
+
+      - name: Inspector mirror repository
+        run: |
+          ls -la
+          ls -la mirror-repo.git
+          
+      - name: Upload mirror repo as artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: mirror-repo-backup
+          path: mirror-repo.git
