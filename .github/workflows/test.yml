@@ -3,7 +3,7 @@ name: Test Action
 on:
   workflow_dispatch:
   schedule:
-    - cron: '* * * * *'
+    - cron: '40 * * * *'
   
 jobs:
   test:
